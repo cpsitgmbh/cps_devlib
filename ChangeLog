@@ -1,3 +1,11 @@
+2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+
+	* Release of cps_devlib 0.1.1
+
+2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+
+	* Added function tx_cpsdevlib_div::callHookObjects to call Hooks from any extension
+
 2011-04-14 Nicole Cordes  <cordes@cps-it.de>
 
 	* Release of cps_devlib 0.1.0

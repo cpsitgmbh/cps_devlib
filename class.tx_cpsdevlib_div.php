@@ -28,6 +28,24 @@
 class tx_cpsdevlib_div {
 
 	/**
+	*	Function to call hooks from any extension
+	*
+	*	@param	string				$extKey: Unique extension key
+	*	@param	string				$theHook: Name of hook
+	* @param	mixed					$parameter: Parameter to assign to function
+	*	@param	mixed					$ref: Reference to calling object
+	*	@return	void
+	*
+	*/
+	function callHookObjects($extKey, $theHook, &$parameter, &$ref) {
+		if (is_array ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$extKey][$theHook])) {
+			foreach  ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$extKey][$theHook] as $funcRef) {
+				t3lib_div::callUserFunction($funcRef, $parameter, $ref);
+			}
+		}
+	}
+
+	/**
 	*	Splits the given string by delimeters. If set trim results and remove empty values.
 	*
 	*	@param	string				$theString: String to split
