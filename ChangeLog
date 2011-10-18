@@ -1,6 +1,10 @@
 2011-06-23 Nicole Cordes  <cordes@cps-it.de>
 
-	* Release of cps_devlib 0.4.0
+	* Release of cps_devlib 0.4.2
+
+2011-06-23 Nicole Cordes  <cordes@cps-it.de>
+
+	* Fixed autoload function for TYPO3 < 4.3 support
 
 2011-06-23 Nicole Cordes  <cordes@cps-it.de>
 
