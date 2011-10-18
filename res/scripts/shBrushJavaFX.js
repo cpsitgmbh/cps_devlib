@@ -22,7 +22,7 @@
 	function Brush()
 	{
 		// Contributed by Patrick Webster
-		// http://patrickwebster.blogspot.com/2009/04/javafx-brush-for-syntaxhighlighter.html
+		// http://patrickwebster.blogspot.com/2009/04/javafx-brush-for-SyntaxHighlighter.html
 		var datatypes =	'Boolean Byte Character Double Duration '
 						+ 'Float Integer Long Number Short String Void'
 						;

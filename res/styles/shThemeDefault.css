@@ -14,104 +14,104 @@
  * @license
  * Dual licensed under the MIT and GPL licenses.
  */
-.syntaxhighlighter {
+.SyntaxHighlighter {
   background-color: white !important;
 }
-.syntaxhighlighter .line.alt1 {
+.SyntaxHighlighter .line.alt1 {
   background-color: white !important;
 }
-.syntaxhighlighter .line.alt2 {
+.SyntaxHighlighter .line.alt2 {
   background-color: white !important;
 }
-.syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
+.SyntaxHighlighter .line.highlighted.alt1, .SyntaxHighlighter .line.highlighted.alt2 {
   background-color: #e0e0e0 !important;
 }
-.syntaxhighlighter .line.highlighted.number {
+.SyntaxHighlighter .line.highlighted.number {
   color: black !important;
 }
-.syntaxhighlighter table caption {
+.SyntaxHighlighter table caption {
   color: black !important;
 }
-.syntaxhighlighter .gutter {
+.SyntaxHighlighter .gutter {
   color: #afafaf !important;
 }
-.syntaxhighlighter .gutter .line {
+.SyntaxHighlighter .gutter .line {
   border-right: 3px solid #6ce26c !important;
 }
-.syntaxhighlighter .gutter .line.highlighted {
+.SyntaxHighlighter .gutter .line.highlighted {
   background-color: #6ce26c !important;
   color: white !important;
 }
-.syntaxhighlighter.printing .line .content {
+.SyntaxHighlighter.printing .line .content {
   border: none !important;
 }
-.syntaxhighlighter.collapsed {
+.SyntaxHighlighter.collapsed {
   overflow: visible !important;
 }
-.syntaxhighlighter.collapsed .toolbar {
+.SyntaxHighlighter.collapsed .toolbar {
   color: blue !important;
   background: white !important;
   border: 1px solid #6ce26c !important;
 }
-.syntaxhighlighter.collapsed .toolbar a {
+.SyntaxHighlighter.collapsed .toolbar a {
   color: blue !important;
 }
-.syntaxhighlighter.collapsed .toolbar a:hover {
+.SyntaxHighlighter.collapsed .toolbar a:hover {
   color: red !important;
 }
-.syntaxhighlighter .toolbar {
+.SyntaxHighlighter .toolbar {
   color: white !important;
   background: #6ce26c !important;
   border: none !important;
 }
-.syntaxhighlighter .toolbar a {
+.SyntaxHighlighter .toolbar a {
   color: white !important;
 }
-.syntaxhighlighter .toolbar a:hover {
+.SyntaxHighlighter .toolbar a:hover {
   color: black !important;
 }
-.syntaxhighlighter .plain, .syntaxhighlighter .plain a {
+.SyntaxHighlighter .plain, .SyntaxHighlighter .plain a {
   color: black !important;
 }
-.syntaxhighlighter .comments, .syntaxhighlighter .comments a {
+.SyntaxHighlighter .comments, .SyntaxHighlighter .comments a {
   color: #008200 !important;
 }
-.syntaxhighlighter .string, .syntaxhighlighter .string a {
+.SyntaxHighlighter .string, .SyntaxHighlighter .string a {
   color: blue !important;
 }
-.syntaxhighlighter .keyword {
+.SyntaxHighlighter .keyword {
   color: #006699 !important;
 }
-.syntaxhighlighter .preprocessor {
+.SyntaxHighlighter .preprocessor {
   color: gray !important;
 }
-.syntaxhighlighter .variable {
+.SyntaxHighlighter .variable {
   color: #aa7700 !important;
 }
-.syntaxhighlighter .value {
+.SyntaxHighlighter .value {
   color: #009900 !important;
 }
-.syntaxhighlighter .functions {
+.SyntaxHighlighter .functions {
   color: #ff1493 !important;
 }
-.syntaxhighlighter .constants {
+.SyntaxHighlighter .constants {
   color: #0066cc !important;
 }
-.syntaxhighlighter .script {
+.SyntaxHighlighter .script {
   font-weight: bold !important;
   color: #006699 !important;
   background-color: none !important;
 }
-.syntaxhighlighter .color1, .syntaxhighlighter .color1 a {
+.SyntaxHighlighter .color1, .SyntaxHighlighter .color1 a {
   color: gray !important;
 }
-.syntaxhighlighter .color2, .syntaxhighlighter .color2 a {
+.SyntaxHighlighter .color2, .SyntaxHighlighter .color2 a {
   color: #ff1493 !important;
 }
-.syntaxhighlighter .color3, .syntaxhighlighter .color3 a {
+.SyntaxHighlighter .color3, .SyntaxHighlighter .color3 a {
   color: red !important;
 }
 
-.syntaxhighlighter .keyword {
+.SyntaxHighlighter .keyword {
   font-weight: bold !important;
 }

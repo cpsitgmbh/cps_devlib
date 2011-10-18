@@ -17,7 +17,7 @@
 
 
 /***************************************************************
-*  TYPO3 TypoScript Brush for Syntax Highlighter
+*  TYPO3 TypoScript Brush for SyntaxHighlighter
 *
 *  (c) 2011 Nicole Cordes <cordes@cps-it.de>
 *  http://www.cps-it.de

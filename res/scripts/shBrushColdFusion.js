@@ -22,7 +22,7 @@
 	function Brush()
 	{
 		// Contributed by Jen
-		// http://www.jensbits.com/2009/05/14/coldfusion-brush-for-syntaxhighlighter-plus
+		// http://www.jensbits.com/2009/05/14/coldfusion-brush-for-SyntaxHighlighter-plus
 	
 		var funcs	=	'Abs ACos AddSOAPRequestHeader AddSOAPResponseHeader AjaxLink AjaxOnLoad ArrayAppend ArrayAvg ArrayClear ArrayDeleteAt ' + 
 						'ArrayInsertAt ArrayIsDefined ArrayIsEmpty ArrayLen ArrayMax ArrayMin ArraySet ArraySort ArraySum ArraySwap ArrayToList ' + 

@@ -1,5 +1,14 @@
 2011-06-23 Nicole Cordes  <cordes@cps-it.de>
 
+	* Release of cps_devlib 0.5.0
+
+2011-06-23 Nicole Cordes  <cordes@cps-it.de>
+
+	* Updated functions in tx_cpsdevlib_extmgm to avoid parameter $pObj (now functions can be used in TYPO3 < 4.4 as well)
+	* Updated manual
+
+2011-06-23 Nicole Cordes  <cordes@cps-it.de>
+
 	* Release of cps_devlib 0.4.2
 
 2011-06-23 Nicole Cordes  <cordes@cps-it.de>
@@ -25,7 +34,7 @@
 2011-06-09 Nicole Cordes  <cordes@cps-it.de>
 
 	* Deleted function tx_cpsdevlib_debug::var_dump
-	* Added function tx_cpsdevlib_debug::debugOutput with Syntax Highlighter
+	* Added function tx_cpsdevlib_debug::debugOutput with SyntaxHighlighter
 	* Added function tx_cpsdevlib_extmgm::addCssFile
 	* Added function tx_cpsdevlib_extmgm::addCssInline
 	* Added function tx_cpsdevlib_extmgm::addJavascriptFile
