@@ -1,5 +1,13 @@
 2011-04-15 Nicole Cordes  <cordes@cps-it.de>
 
+	* Release of cps_devlib 0.2.0
+
+2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+
+	* Added function tx_cpsdevlib_debug::var_dump to output variables in addiction to $TYPO3_CONF_VARS['SYS']['displayErrors']
+
+2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+
 	* Release of cps_devlib 0.1.1
 
 2011-04-15 Nicole Cordes  <cordes@cps-it.de>
