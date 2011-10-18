@@ -1,5 +1,13 @@
 2011-06-09 Nicole Cordes  <cordes@cps-it.de>
 
+	* Release of cps_devlib 0.3.1
+
+2011-06-09 Nicole Cordes  <cordes@cps-it.de>
+
+	* Fixed tx_cpsdevlib_debug::debugOutput to evaluate $TYPO3_CONF_VARS['SYS']['displayErrors'] the correct way
+
+2011-06-09 Nicole Cordes  <cordes@cps-it.de>
+
 	* Release of cps_devlib 0.3.0
 
 2011-06-09 Nicole Cordes  <cordes@cps-it.de>

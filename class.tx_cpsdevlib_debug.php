@@ -29,17 +29,19 @@ class tx_cpsdevlib_debug {
 
 	/**
 	*	Returns human readable variable information output by print_r function
-	* Depending on TYPO3_CONF_VARS['SYS']['displayErrors'] and checks TYPO3_CONF_VARS['SYS']['devIPmask'] if needed to
+	*	Depending on TYPO3_CONF_VARS['SYS']['displayErrors'] and checks TYPO3_CONF_VARS['SYS']['devIPmask'] if needed to
 	*
 	*	@param	mixed					$theData: Variable to dump (if allowed)
-	* @param	object				$pObj: Caller object needed for work with Syntax Highlighter in backend modules
-	* @param	string				$codeClass: Class to use for pre-tag with Syntax Highlighter
-	*	@param	boolean				$useSyntaxHighlight: Add some JavaScript to turn on Syntax Highlighter
-	* @param	array					$shAdditionalConfig: Manual configuration of Syntax Highlighter e.g. to add custom brushes
+	*	@param	object				$pObj: Caller object needed for work with SyntaxHighlighter in backend modules
+	*	@param	string				$codeClass: Class to use for pre-tag with SyntaxHighlighter
+	*	@param	string				$blockTitle: Display a title above block
+	*	@param	boolean				$useSyntaxHighlighter: Add some JavaScript to turn on SyntaxHighlighter
+	*	@param	array					$shAdditionalConfig: Manual configuration of SyntaxHighlighter e.g. to add custom brushes
+	*	@param	string				$additionalWrap:	Wrap output if not using SyntaxHighlighter
 	*	@return	string				The dumped variable
 	*
 	*/
-	function debugOutput($theData, &$pObj, $codeClass = 'plain', $useSyntaxHighlighter = true, $shAdditionalConfig = array()) {
+	function debugOutput($theData, &$pObj, $codeClass = 'plain', $blockTitle = '', $useSyntaxHighlighter = true, $shAdditionalConfig = array(), $additionalWrap = '<pre>|</pre>') {
 		global $TYPO3_CONF_VARS;
 
 		$result = '';
@@ -74,180 +76,182 @@ class tx_cpsdevlib_debug {
 				// Clean output buffer
 				ob_end_clean();
 
-			}
-		}
+		    // Style output with SyntaxHighlighter
+				if ($useSyntaxHighlighter) {
 
-    // Style output with Syntax Highlighter
-		if ($useSyntaxHighlighter) {
+					$shBasicConfig = array(
+						'baseUrl' => '/'.t3lib_extMgm::siteRelPath('cps_devlib').'res/',
+						'scripts' => 'scripts/',
+						'styles' => 'styles/',
+						'theme' => 'Default',
+						'brushes' => array(),
+					);
 
-			$shBasicConfig = array(
-				'baseUrl' => '/'.t3lib_extMgm::siteRelPath('cps_devlib').'res/',
-				'scripts' => 'scripts/',
-				'styles' => 'styles/',
-				'theme' => 'Default',
-				'brushes' => array(),
-			);
+					$shBasicConfig = array_merge($shBasicConfig, $shAdditionalConfig);
 
-			$shBasicConfig = array_merge($shBasicConfig, $shAdditionalConfig);
+					// Try to get brush to load
+					if (!count($shBasicConfig['brushes'])) {
 
-			// Try to get brush to load
-			if (!count($shBasicConfig['brushes'])) {
+						$codeClass = strtolower($codeClass);
+						switch ($codeClass) {
 
-				$codeClass = strtolower($codeClass);
-				switch ($codeClass) {
+							case 'applescript':
+								$shBasicConfig['brushes'] = array('AppleScript');
+								break;
 
-					case 'applescript':
-						$shBasicConfig['brushes'] = array('AppleScript');
-						break;
+							case 'as3':
+							case 'actionscript3':
+								$shBasicConfig['brushes'] = array('AS3');
+								break;
 
-					case 'as3':
-					case 'actionscript3':
-						$shBasicConfig['brushes'] = array('AS3');
-						break;
+							case 'bash':
+							case 'shell':
+								$shBasicConfig['brushes'] = array('Bash');
+								break;
 
-					case 'bash':
-					case 'shell':
-						$shBasicConfig['brushes'] = array('Bash');
-						break;
+							case 'cf':
+							case 'coldfusion':
+								$shBasicConfig['brushes'] = array('ColdFusion');
+								break;
 
-					case 'cf':
-					case 'coldfusion':
-						$shBasicConfig['brushes'] = array('ColdFusion');
-						break;
+							case 'c#':
+							case 'c-sharp':
+							case 'csharp':
+								$shBasicConfig['brushes'] = array('CSharp');
+								break;
 
-					case 'c#':
-					case 'c-sharp':
-					case 'csharp':
-						$shBasicConfig['brushes'] = array('CSharp');
-						break;
+							case 'c':
+							case 'cpp':
+								$shBasicConfig['brushes'] = array('Cpp');
+								break;
 
-					case 'c':
-					case 'cpp':
-						$shBasicConfig['brushes'] = array('Cpp');
-						break;
+							case 'css':
+								$shBasicConfig['brushes'] = array('Css');
+								break;
 
-					case 'css':
-						$shBasicConfig['brushes'] = array('Css');
-						break;
+							case 'delphi':
+							case 'pas':
+							case 'pascal':
+								$shBasicConfig['brushes'] = array('Delphi');
+								break;
 
-					case 'delphi':
-					case 'pas':
-					case 'pascal':
-						$shBasicConfig['brushes'] = array('Delphi');
-						break;
+							case 'diff':
+							case 'patch':
+								$shBasicConfig['brushes'] = array('Diff');
+								break;
 
-					case 'diff':
-					case 'patch':
-						$shBasicConfig['brushes'] = array('Diff');
-						break;
+							case 'erl':
+							case 'erlang':
+								$shBasicConfig['brushes'] = array('Erlang');
+								break;
 
-					case 'erl':
-					case 'erlang':
-						$shBasicConfig['brushes'] = array('Erlang');
-						break;
+							case 'groovy':
+								$shBasicConfig['brushes'] = array('Groovy');
+								break;
 
-					case 'groovy':
-						$shBasicConfig['brushes'] = array('Groovy');
-						break;
+							case 'js':
+							case 'jscript':
+							case 'javascript':
+								$shBasicConfig['brushes'] = array('JScript');
+								break;
 
-					case 'js':
-					case 'jscript':
-					case 'javascript':
-						$shBasicConfig['brushes'] = array('JScript');
-						break;
+							case 'java':
+								$shBasicConfig['brushes'] = array('Java');
+								break;
 
-					case 'java':
-						$shBasicConfig['brushes'] = array('Java');
-						break;
+							case 'jfx':
+							case 'javafx':
+								$shBasicConfig['brushes'] = array('JavaFX');
+								break;
 
-					case 'jfx':
-					case 'javafx':
-						$shBasicConfig['brushes'] = array('JavaFX');
-						break;
+							case 'perl':
+							case 'pl':
+								$shBasicConfig['brushes'] = array('Perl');
+								break;
 
-					case 'perl':
-					case 'pl':
-						$shBasicConfig['brushes'] = array('Perl');
-						break;
+							case 'php':
+								$shBasicConfig['brushes'] = array('Php');
+								break;
 
-					case 'php':
-						$shBasicConfig['brushes'] = array('Php');
-						break;
+							case 'ps':
+							case 'powershell':
+								$shBasicConfig['brushes'] = array('PowerShell');
+								break;
 
-					case 'ps':
-					case 'powershell':
-						$shBasicConfig['brushes'] = array('PowerShell');
-						break;
+							case 'py':
+							case 'python':
+								$shBasicConfig['brushes'] = array('Python');
+								break;
 
-					case 'py':
-					case 'python':
-						$shBasicConfig['brushes'] = array('Python');
-						break;
+							case 'rails':
+							case 'rb':
+							case 'ror':
+							case 'ruby':
+								$shBasicConfig['brushes'] = array('Ruby');
+								break;
 
-					case 'rails':
-					case 'rb':
-					case 'ror':
-					case 'ruby':
-						$shBasicConfig['brushes'] = array('Ruby');
-						break;
+							case 'sass':
+							case 'scss':
+								$shBasicConfig['brushes'] = array('Sass');
+								break;
 
-					case 'sass':
-					case 'scss':
-						$shBasicConfig['brushes'] = array('Sass');
-						break;
+							case 'scala':
+								$shBasicConfig['brushes'] = array('Scala');
+								break;
 
-					case 'scala':
-						$shBasicConfig['brushes'] = array('Scala');
-						break;
+							case 'sql':
+								$shBasicConfig['brushes'] = array('Sql');
+								break;
 
-					case 'sql':
-						$shBasicConfig['brushes'] = array('Sql');
-						break;
+							case 'ts':
+							case 'typoscript':
+								$shBasicConfig['brushes'] = array('Typoscript');
+								break;
 
-					case 'ts':
-					case 'typoscript':
-						$shBasicConfig['brushes'] = array('Typoscript');
-						break;
+							case 'vb':
+							case 'vbnet':
+								$shBasicConfig['brushes'] = array('Vb');
+								break;
 
-					case 'vb':
-					case 'vbnet':
-						$shBasicConfig['brushes'] = array('Vb');
-						break;
+							case 'xml':
+							case 'xhtml':
+							case 'xslt':
+							case 'html':
+							case 'xhtml':
+								$shBasicConfig['brushes'] = array('Xml');
+								break;
 
-					case 'xml':
-					case 'xhtml':
-					case 'xslt':
-					case 'html':
-					case 'xhtml':
-						$shBasicConfig['brushes'] = array('Xml');
-						break;
+							default:
+								$shBasicConfig['brushes'] = array('Plain');
+								break;
+						}
+					}
 
-					default:
-						$shBasicConfig['brushes'] = array('Plain');
-						break;
+					// Add SyntaxHighlighter core style
+					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shCore.css', 'tx_cpsdevlib_debug_shcorecss', $pObj);
+
+					// Add SyntaxHighlighter theme
+					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shTheme'.$shBasicConfig['theme'].'.css', 'tx_cpsdevlib_debug_shtheme'.$shBasicConfig['theme'].'css', $pObj);
+
+					// Add SyntaxHighlighter core javascript
+					tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shCore.js', 'tx_cpsdevlib_debug_shcorejs', $pObj);
+
+					// Add brushes
+					foreach ($shBasicConfig['brushes'] as $brush) {
+						tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shBrush'.$brush.'.js', 'tx_cpsdevlib_debug_shbrush'.strtolower($brush).'js', $pObj);
+					}
+
+					// Run SyntaxHighlighter
+					tx_cpsdevlib_extmgm::addJavascriptInline('SyntaxHighlighter.all();', 'tx_cpsdevlib_debug_shrun', $pObj);
+
+					$result = LF.'<pre class="brush: '.htmlspecialchars($codeClass).'"'.(($blockTitle) ? ' title="'.htmlspecialchars($blockTitle).'"' : '').'>'.LF.htmlspecialchars($result).LF.'</pre>';
+
+				} else { // Alternative wrapping method without SyntaxHighlighter
+					if ($additionalWrap) $result = str_replace('|', LF.$result.LF, $additionalWrap);
 				}
+
 			}
-
-			// Add SyntaxHighlighter core style
-			tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shCore.css', 'tx_cpsdevlib_debug_shcorecss', $pObj);
-
-			// Add SyntaxHighlighter theme
-			tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shTheme'.$shBasicConfig['theme'].'.css', 'tx_cpsdevlib_debug_shtheme'.$shBasicConfig['theme'].'css', $pObj);
-
-			// Add SyntaxHighlighter core javascript
-			tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shCore.js', 'tx_cpsdevlib_debug_shcorejs', $pObj);
-
-			// Add brushes
-			foreach ($shBasicConfig['brushes'] as $brush) {
-				tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shBrush'.$brush.'.js', 'tx_cpsdevlib_debug_shbrush'.strtolower($brush).'js', $pObj);
-			}
-
-			// Run SyntaxHighlighter
-			tx_cpsdevlib_extmgm::addJavascriptInline('SyntaxHighlighter.all();', 'tx_cpsdevlib_debug_shrun', $pObj);
-
-			$result = LF.'<pre class="brush: '.$codeClass.'">'.LF.htmlspecialchars($result).LF.'</pre>';
 		}
-
 		return $result;
 	}
 }
