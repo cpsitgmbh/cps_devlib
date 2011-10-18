@@ -1,8 +1,22 @@
-2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+2011-06-09 Nicole Cordes  <cordes@cps-it.de>
+
+	* Release of cps_devlib 0.3.0
+
+2011-06-09 Nicole Cordes  <cordes@cps-it.de>
+
+	* Deleted function tx_cpsdevlib_debug::var_dump
+	* Added function tx_cpsdevlib_debug::debugOutput with Syntax Highlighter
+	* Added function tx_cpsdevlib_extmgm::addCssFile
+	* Added function tx_cpsdevlib_extmgm::addCssInline
+	* Added function tx_cpsdevlib_extmgm::addJavascriptFile
+	* Added function tx_cpsdevlib_extmgm::addJavascriptInline
+	* Added function tx_cpsdevlib_parser::nl2SQL
+
+2011-06-08 Nicole Cordes  <cordes@cps-it.de>
 
 	* Release of cps_devlib 0.2.0
 
-2011-04-15 Nicole Cordes  <cordes@cps-it.de>
+2011-06-08 Nicole Cordes  <cordes@cps-it.de>
 
 	* Added function tx_cpsdevlib_debug::var_dump to output variables in addiction to $TYPO3_CONF_VARS['SYS']['displayErrors']
 
