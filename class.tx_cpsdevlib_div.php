@@ -65,6 +65,36 @@ class tx_cpsdevlib_div {
 	}
 
 	/**
+	*	Converts the given string (query string) in an array.
+	*
+	*	@param	string				$theString: String to convert
+	*	@param	string				$theSeparator: Seperator to split key/value pairs
+	* @param	string				$equalChar: Character to split key from value
+	* @param	string				$altSeparators: Comma separated list for alternative separators
+	*	@return	array					The converted array
+	*
+	*/
+	function queryStringToArray($theString, $theSeparator = '&', $equalChar = '=', $altSeparators = '&amp;') {
+
+		$result = array();
+
+		if ($theString != '') {
+			$altSeparatorList = self::toListArray($altSeparators);
+			foreach ($altSeparatorList as $altSeparator) {
+				$theString = str_replace($altSeparator, $theSeparator, $theString);
+			}
+
+			$pairArray = explode($theSeparator, $theString);
+			foreach ($pairArray as $key => $value) {
+				$tempArray = explode($equalChar, $value);
+				$result[$tempArray[0]] = $tempArray[1];
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	*	Converts the given mixed data into a list (array).
 	*
 	*	@param	mixed					$theData: Data to convert to list

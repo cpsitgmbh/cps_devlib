@@ -1,3 +1,11 @@
+2011-06-23 Nicole Cordes  <cordes@cps-it.de>
+
+	* Release of cps_devlib 0.4.0
+
+2011-06-23 Nicole Cordes  <cordes@cps-it.de>
+
+	* Added function tx_cpsdevlib_div::queryStringToArray
+
 2011-06-09 Nicole Cordes  <cordes@cps-it.de>
 
 	* Release of cps_devlib 0.3.1
