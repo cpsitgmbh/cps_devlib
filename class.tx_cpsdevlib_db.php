@@ -28,22 +28,10 @@
 class tx_cpsdevlib_db {
 
 	/**
-	*	Gets rootline of a table
-	*
-	*	@param	string				$theTable: Database table
-	*	@param	string				$parentField: Database field to use
-	*	@param	mixed					$uids: Uids or pids
-	*	@return	string				An rootline array
-	*
-	*/
-	function getRootLine($theTable, $theField, $uids) {
-	}
-
-	/**
 	*	Gets rootline of a table downwards
 	*
 	*	@param	string				$theTable: Database table
-	*	@param	string				$parentField: Database field for check with third parameter
+	*	@param	string				$parentField: Database field to check with third parameter
 	*	@param	mixed					$uids: Uids of items
 	*	@return	string				An rootline array
 	*
@@ -69,8 +57,8 @@ class tx_cpsdevlib_db {
 	*	Gets rootline of a table downwards
 	*
 	*	@param	string				$theTable: Database table
-	*	@param	string				$parentField: Database field for check with third parameter
-	*	@param	mixed					$uids: Uids of parents
+	*	@param	string				$parentField: Database field to check with third parameter
+	*	@param	mixed					$uids: Uids of (different) parents
 	*	@return	string				An rootline array
 	*
 	*/

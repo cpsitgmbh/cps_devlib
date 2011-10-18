@@ -97,10 +97,21 @@ class tx_cpsdevlib_div {
 	*	@return	string				A list joined by second argument
 	*
 	*/
-	function toListString($theData, $theGlue, $theDelims = ',;.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
+	function toListString($theData, $theGlue = ',', $theDelims = ',;.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
 		return implode($theGlue, self::toListArray($theData, $theDelims, $useTrim, $removeEmptyValues, $useArrayKeys, $theLimit));
 	}
 
+
+	/**
+	*	Edit array values with multiple functions
+	*
+	*	@param	array					$theArray: Array to edit
+	*	@param	boolean				$useTrim: If true use trim function for each value
+	*	@param	boolean				$removeEmptyValues: If true remove empty array items
+	*	@param	integer				$theLimit: Defines limited array count
+	*	@return	array					The edited array
+	*
+	*/
 	function removeArrayValues($theArray, $useTrim = true, $removeEmptyValues = true, $theLimit = 0) {
 		$result = $theArray;
 
