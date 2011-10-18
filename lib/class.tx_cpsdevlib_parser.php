@@ -25,6 +25,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+// Define constant for line feed
+if (!defined('LF')) define('LF', chr(10));
+
 class tx_cpsdevlib_parser {
 
 	/**
@@ -35,7 +38,7 @@ class tx_cpsdevlib_parser {
 	*
 	*/
 	function nl2SQL($theString) {
-		return preg_replace('/\s(FIELDS|FROM|GROUP BY|HAVING|IGNORE|INTO DUMPFILE|INTO OUTFILE|INTO TABLE|LIMIT|LINES|ON DUPLICATE KEY UPDATE|OPEN|ORDER BY|PROCEDURE|READ|REPLACE|SET|UNION|USING|VALUES|WHERE) /i', LF."$1 ", $theString);
+		return preg_replace('/\s(FIELDS|FROM|GROUP BY|HAVING|IGNORE|INTO DUMPFILE|INTO OUTFILE|INTO TABLE|LIMIT|LINES|ON DUPLICATE KEY UPDATE|OPEN|ORDER BY|PROCEDURE|READ|REPLACE|SET|UNION|USING|VALUES|WHERE) /i', LF . "$1 ", $theString);
 	}
 }
 ?>

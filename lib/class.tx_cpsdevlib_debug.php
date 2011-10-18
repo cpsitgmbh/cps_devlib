@@ -25,9 +25,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-// Define constant for line feed
-if (!defined('LF')) define('LF', chr(10));
-
 class tx_cpsdevlib_debug {
 
 	/**
@@ -82,7 +79,7 @@ class tx_cpsdevlib_debug {
 				if ($useSyntaxHighlighter) {
 
 					$shBasicConfig = array(
-						'baseUrl' => '/'.t3lib_extMgm::siteRelPath('cps_devlib').'res/',
+						'baseUrl' => '/' . t3lib_extMgm::siteRelPath('cps_devlib') . 'res/',
 						'scripts' => 'scripts/',
 						'styles' => 'styles/',
 						'theme' => 'Default',
@@ -230,26 +227,26 @@ class tx_cpsdevlib_debug {
 					}
 
 					// Add SyntaxHighlighter core style
-					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shCore.css', 'tx_cpsdevlib_debug_shcorecss');
+					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'] . $shBasicConfig['styles'] . 'shCore . css', 'tx_cpsdevlib_debug_shcorecss');
 
 					// Add SyntaxHighlighter theme
-					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'].$shBasicConfig['styles'].'shTheme'.$shBasicConfig['theme'].'.css', 'tx_cpsdevlib_debug_shtheme'.$shBasicConfig['theme'].'css');
+					tx_cpsdevlib_extmgm::addCssFile($shBasicConfig['baseUrl'] . $shBasicConfig['styles'] . 'shTheme' . $shBasicConfig['theme'] . '.css', 'tx_cpsdevlib_debug_shtheme' . $shBasicConfig['theme'] . 'css');
 
 					// Add SyntaxHighlighter core javascript
-					tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shCore.js', 'tx_cpsdevlib_debug_shcorejs');
+					tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'] . $shBasicConfig['scripts'] . 'shCore.js', 'tx_cpsdevlib_debug_shcorejs');
 
 					// Add brushes
 					foreach ($shBasicConfig['brushes'] as $brush) {
-						tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'].$shBasicConfig['scripts'].'shBrush'.$brush.'.js', 'tx_cpsdevlib_debug_shbrush'.strtolower($brush).'js');
+						tx_cpsdevlib_extmgm::addJavascriptFile($shBasicConfig['baseUrl'] . $shBasicConfig['scripts'] . 'shBrush' . $brush . '.js', 'tx_cpsdevlib_debug_shbrush' . strtolower($brush) . 'js');
 					}
 
 					// Run SyntaxHighlighter
 					tx_cpsdevlib_extmgm::addJavascriptInline('SyntaxHighlighter.all();', 'tx_cpsdevlib_debug_shrun');
 
-					$result = LF.'<pre class="brush: '.htmlspecialchars($codeClass).'"'.(($blockTitle) ? ' title="'.htmlspecialchars($blockTitle).'"' : '').'>'.LF.htmlspecialchars($result).LF.'</pre>';
+					$result = LF . '<pre class="brush: ' . htmlspecialchars($codeClass) . '"' . (($blockTitle) ? ' title="' . htmlspecialchars($blockTitle) . '"' : '') . '>' . LF . htmlspecialchars($result) . LF . '</pre>';
 
 				} else { // Alternative wrapping method without SyntaxHighlighter
-					if ($additionalWrap) $result = str_replace('|', LF.$result.LF, $additionalWrap);
+					if ($additionalWrap) $result = str_replace('|', LF . $result . LF, $additionalWrap);
 				}
 
 			}

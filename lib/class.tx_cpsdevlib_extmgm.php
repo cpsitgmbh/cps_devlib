@@ -41,7 +41,7 @@ class tx_cpsdevlib_extmgm {
 	function addCssFile($cssFile, $cssName = '', $rel = 'stylesheet', $media = 'all', $title = '') {
 
 		if (!$cssName) $cssName = $cssFile;
-		$cssLink = '<link rel="'.htmlspecialchars($rel).'" type="text/css" href="'.htmlspecialchars($cssFile).'" media="'.htmlspecialchars($media).'"'.($title ? ' title="'.htmlspecialchars($title).'"' : '').' />';
+		$cssLink = '<link rel="' . htmlspecialchars($rel) . '" type="text/css" href="' . htmlspecialchars($cssFile) . '" media="' . htmlspecialchars($media) . '"' . ($title ? ' title="' . htmlspecialchars($title) . '"' : '') . self::getEndingSlash() . '>';
 
 		// If CSS should be added to backend output
 		if (TYPO3_MODE == 'BE') {
@@ -49,7 +49,7 @@ class tx_cpsdevlib_extmgm {
 				// If content already rendered
 				if ((isset($GLOBALS['SOBE']->content)) && ($GLOBALS['SOBE']->content)) {
 					if (strpos($GLOBALS['SOBE']->content, $cssLink) === false) {
-						$GLOBALS['SOBE']->content = str_replace('</head>', LF.$cssLink.LF.'</head>', $GLOBALS['SOBE']->content);
+						$GLOBALS['SOBE']->content = str_replace('</head>', LF . $cssLink . LF . '</head>', $GLOBALS['SOBE']->content);
 					}
 
 					return true;
@@ -87,7 +87,7 @@ class tx_cpsdevlib_extmgm {
 	function addCssInline($cssCode, $cssName = '') {
 
 		if (!$cssName) $cssName = substr(md5($cssCode), 0, 30);
-		$cssStyle = '<style type="text/css">'.LF.'/*<![CDATA[*/'.LF.'<!-- '.LF.$cssCode.LF.'-->'.LF.'/*]]>*/'.LF.'</style>';
+		$cssStyle = '<style type="text/css">' . LF . '/*<![CDATA[*/' . LF . '<!-- ' . LF . $cssCode . LF . '-->' . LF . '/*]]>*/' . LF . '</style>';
 
 		// If CSS should be added to backend output
 		if (TYPO3_MODE == 'BE') {
@@ -95,7 +95,7 @@ class tx_cpsdevlib_extmgm {
 				// If content already rendered
 				if ((isset($GLOBALS['SOBE']->content)) && ($GLOBALS['SOBE']->content)) {
 					if (strpos($GLOBALS['SOBE']->content, $cssStyle) === false) {
-						$GLOBALS['SOBE']->content = str_replace('</head>', LF.$cssStyle.LF.'</head>', $GLOBALS['SOBE']->content);
+						$GLOBALS['SOBE']->content = str_replace('</head>', LF . $cssStyle . LF . '</head>', $GLOBALS['SOBE']->content);
 					}
 
 					return true;
@@ -134,7 +134,7 @@ class tx_cpsdevlib_extmgm {
 	function addJavascriptFile($jsFile, $jsName = '', $type = 'text/javascript') {
 
 		if (!$jsName) $jsName = $jsFile;
-		$jsScript = '<script src="'.htmlspecialchars($jsFile).'" type="'.htmlspecialchars($type).'"></script>';
+		$jsScript = '<script src="' . htmlspecialchars($jsFile) . '" type="' . htmlspecialchars($type) . '"></script>';
 
 		// If JS should be added to backend output
 		if (TYPO3_MODE == 'BE') {
@@ -142,7 +142,7 @@ class tx_cpsdevlib_extmgm {
 				// If content already rendered
 				if ((isset($GLOBALS['SOBE']->content)) && ($GLOBALS['SOBE']->content)) {
 					if (strpos($GLOBALS['SOBE']->content, $jsScript) === false) {
-						$GLOBALS['SOBE']->content = str_replace('</head>', LF.$jsScript.LF.'</head>', $GLOBALS['SOBE']->content);
+						$GLOBALS['SOBE']->content = str_replace('</head>', LF . $jsScript . LF . '</head>', $GLOBALS['SOBE']->content);
 					}
 
 					return true;
@@ -181,7 +181,7 @@ class tx_cpsdevlib_extmgm {
 	function addJavascriptInline($jsCode, $jsName = '', $type = 'text/javascript') {
 
 		if (!$jsName) $jsName = substr(md5($jsCode), 0, 30);
-		$jsScript = '<script type="'.htmlspecialchars($type).'">'.LF.$jsCode.LF.'</script>';
+		$jsScript = '<script type="' . htmlspecialchars($type) . '">' . LF . $jsCode . LF . '</script>';
 
 		// If JS should be added to backend output
 		if (TYPO3_MODE == 'BE') {
@@ -189,7 +189,7 @@ class tx_cpsdevlib_extmgm {
 				// If content already rendered
 				if ((isset($GLOBALS['SOBE']->content)) && ($GLOBALS['SOBE']->content)) {
 					if (strpos($GLOBALS['SOBE']->content, $jsScript) === false) {
-						$GLOBALS['SOBE']->content = str_replace('</head>', LF.$jsScript.LF.'</head>', $GLOBALS['SOBE']->content);
+						$GLOBALS['SOBE']->content = str_replace('</head>', LF . $jsScript . LF . '</head>', $GLOBALS['SOBE']->content);
 					}
 
 					return true;
@@ -214,6 +214,42 @@ class tx_cpsdevlib_extmgm {
 		}
 
 		return false;
+	}
+
+	/**
+	*	Return ending slash for xhtml document doctypes (and html5)
+	*
+	*	@return	string				Either ending slash or none
+	*
+	*/
+	function getEndingSlash() {
+		// Array with all xhtml doctypes
+		$xhtmlArray = array(
+			'html_5',
+			'html5',
+			'xhtml+rdfa_10',
+			'xhtml_11',
+			'xhtml_2',
+			'xhtml_basic',
+			'xhtml_frames',
+			'xhtml_strict',
+			'xhtml_trans'
+		);
+
+		$result = '';
+
+		// Only check for frontend
+		if (TYPO3_MODE == 'FE') {
+
+			// If current doctype is a xhtml one
+			if (in_array($GLOBALS['TSFE']->config['config']['doctype'], $xhtmlArray)) {
+				$result = ' /';
+			}
+		} else {
+			$result = ' /';
+		}
+
+		return $result;
 	}
 }
 ?>

@@ -56,8 +56,8 @@ class tx_cpsdevlib_div {
 	*	@return	array					The exploded array
 	*
 	*/
-	function explode($theString, $theDelims = ',;.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $theLimit = 0) {
-		$pattern = '/['.$theDelims.']/';
+	function explode($theString, $theDelims = ',;\.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $theLimit = 0) {
+		$pattern = '/[' . $theDelims . ']/';
 		$result = preg_split($pattern, $theString);
 		$result = self::removeArrayValues($result, $removeEmptyValues, $theLimit);
 
@@ -111,7 +111,7 @@ class tx_cpsdevlib_div {
 	*	@return	string				An array list (one-dimensional)
 	*
 	*/
-	function toListArray($theData, $theDelims = ',;.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
+	function toListArray($theData, $theDelims = ',;\.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
 
 		if (is_string($theData)) {
 			return self::explode($theData, $theDelims, 1, 1);
@@ -150,7 +150,7 @@ class tx_cpsdevlib_div {
 	*	@return	string				A list joined by second argument
 	*
 	*/
-	function toListString($theData, $theGlue = ',', $theDelims = ',;.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
+	function toListString($theData, $theGlue = ',', $theDelims = ',;\.:\-\+&\/', $useTrim = true, $removeEmptyValues = true, $useArrayKeys = false, $theLimit = 0) {
 		return implode($theGlue, self::toListArray($theData, $theDelims, $useTrim, $removeEmptyValues, $useArrayKeys, $theLimit));
 	}
 
