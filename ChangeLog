@@ -1,3 +1,7 @@
+2011-10-24 Nicole Cordes  <cordes@cps-it.de>
+
+	* Defined functions as "public static" and reformatted code
+
 2011-07-19 Nicole Cordes  <cordes@cps-it.de>
 
 	* Release of cps_devlib 0.6.0
